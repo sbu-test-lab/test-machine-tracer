@@ -11,11 +11,10 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
-import oracle.IExecuteModel;
+import sbu.testlab.testmachine.tracer.oracle.IExecuteModel;
 
 public class TestMachine {
 
@@ -128,6 +127,23 @@ s.append("}");
 	return s.toString();
 
 }
+
+	/**
+	 * extract arcs of the machine from string like this (each line contain one arc):
+	 *   arcsStr="
+	 *       start_state, end_state, arc_name \n
+	 *       start_state, end_state, arc_name \n
+	 * 	     ...
+	 * 	     "
+	 * @param arcsStr
+	 */
+	public void fromString(String arcsStr){
+		String[] lines=arcsStr.trim().split("\n");
+		for(String line:lines){
+			String[] parts =line.trim().split(",");
+			this.addTransition(parts[0].trim(), parts[1].trim(), parts[2].trim(), true);
+		}
+	}
 
 public void fromFile(String path) {
 	InputStream fis;

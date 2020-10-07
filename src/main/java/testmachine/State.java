@@ -13,7 +13,24 @@ import java.util.Vector;
 
 public class State extends HashMap<String, String> {
 
-	
+
+	/**
+	 * extract states of the machine from string like this (each line contain one state):
+	 *   str="
+	 *       state_name1, state_conditon1 \n
+	 * 	     state_name2, state_conditon2 \n
+	 * 	     ...
+	 * 	     "
+	 * @param statesStr
+	 */
+	public void fromString(String statesStr){
+		String[] lines=statesStr.trim().split("\n");
+		for(String line:lines){
+			String[] parts =line.trim().split(",");
+			this.put(parts[0].trim(), parts[1].trim());
+		}
+	}
+
 	public void fromFile(String path) {
 		InputStream fis;
 		BufferedReader br = null;
@@ -39,6 +56,7 @@ public class State extends HashMap<String, String> {
 			fis = null;
 		}
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
