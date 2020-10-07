@@ -1,0 +1,21 @@
+States
+  S0, (x==0 && y==22)
+  S1, (x>0 && x<8 && y==22)
+  S2, (x==1 && y<22)
+  S3, (x>0 && x<8 && y<22)
+
+Arcs
+  null, S0, init
+  S0, S1, MoveRight
+  S1, S1, MoveRight
+  S1, S0, MoveLeft
+  S2, S3, MoveRight
+  S3, S3, MoveRight
+  S3, S2, MoveLeft
+  S0, S2, MoveDown
+  S1, S3, MoveDown
+  S2, S2, MoveDown
+  S3, S3, MoveDown
+
+
+
